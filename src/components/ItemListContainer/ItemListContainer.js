@@ -1,5 +1,12 @@
+import ItemCount from "../ItemCount/ItemCount";
+
 const ItemListContainer = ({greating}) => {
-    return <h2>{greating}</h2>;
+    return (
+    <div>
+        <h2>{greating}</h2>
+        <ItemCount/>
+    </div>
+    );
 };
 
 export default ItemListContainer;
