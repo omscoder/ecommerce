@@ -1,20 +1,28 @@
 import { useState } from "react";
-import CicloDeVida from "../CicloDeVida/CicloDeVida";
 
-function ItemCount (){
-    const [contador, setContador] = useState(0);
+
+
+function ItemCount ({stock, initial, onAdd}){
+    const [contador, setContador] = useState(initial);
+
     const suma = () =>{
-    setContador(contador + 1);
+        if(contador<stock){
+        setContador(contador + 1);
+        };
     };
+
     const resta = () =>{
+        if (contador>initial) {
         setContador(contador - 1);
+        };
     };
+
     const agregar = () =>{
-        console.log("se agrego");
+        {contador>0 ? onAdd({contador}): console.log("no hay stock")};
     };
+
     return (
         <div>
-            {contador <= 5 ? <CicloDeVida numero={contador}/> : null}
             <button className='BotonSuma' onClick={suma}>Suma</button>
             <button className='BotonResta'onClick={resta}>Resta</button>
             <button className='AgregarACarrito'onClick={agregar}>Agregar</button>

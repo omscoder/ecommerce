@@ -9,9 +9,7 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
-      <ItemListContainer greating={'Saludos desde marte'}>
-      
-      </ItemListContainer>
+      <ItemListContainer greating={'Saludos desde marte'}/>
       <header className="App-header">
         
       </header>
