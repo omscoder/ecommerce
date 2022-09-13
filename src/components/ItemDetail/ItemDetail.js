@@ -1,15 +1,18 @@
+import ItemCount from "../ItemCount/ItemCount";
 
-function ItemDetail ({item}){
-    const detail =[
-        {
-            id: 2,
-            name: 'Lugar 2',
-            description: 'Lugar 2 description',
-            price: '$200',
-            image: 'https://picsum.photos/200/300',
-            stock: 2,
-        }
-    ];
+function ItemDetail ({prod}){
+    
+    const {name, price, image,} = prod
+
+    return(
+        <div>
+            <h2>{name}</h2>
+            <h2>{price}</h2>
+            <image src={image} />
+            <ItemCount stock={prod.stock} initial={1} onAdd={prod} />
+        </div>
+    );
 };
+
 
 export default ItemDetail;

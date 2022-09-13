@@ -1,36 +1,29 @@
 import { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
 import data from "../ItemListContainer/Mock-data";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 function ItemDetailContainer () {
     const [item, setItem] = useState ([]);
-    const getData = new Promise((resolve, reject) => {
-        setTimeout(()=>{
-            resolve(data);
-        }, 2000);
-    });
-    
-    const getItem =()=>{
-        fetch('./ItemListContainer/Mock-data.js')
-        .then((data) =>{
-            setItem(data);
-            return (data.results);
+    const getItem=(id)=>{
+        return new Promise((resolve, reject) => {
+            const prod =data.find(p=>p.id===parseInt(id))
+            setTimeout(()=>{
+                resolve(prod);
+            }, 2000);
         });
     };
 
     useEffect(()=>{
-        getItem();
-    },[]);
-    useEffect(() =>{
-        getData.then((result) => {
-            setItem(result);
+        getItem(1).then((data)=>{
+            setItem(data);
         });
-    }, []);
-    
-    return (
-    <div>
-        {item.length > 0 ? (<ItemList listadoItems={item}/>) : <div>Cargando...</div>}
-    </div>
+    },[]);
+
+    return(
+        <div>
+            <ItemDetail prod={prod}/>
+        </div>
     );
 };
 

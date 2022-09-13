@@ -4,15 +4,15 @@ const ItemList = ({listadoItems}) => {
     
     return(
         <div>
-            {listadoItems.map((producto) => {
+            {listadoItems.map((prod) => {
                 return (
                     <Item
-                        key={producto.id}
-                        name={producto.name}
-                        description={producto.description}
-                        price={producto.price}
-                        image={producto.image}
-                        stock={producto.stock}
+                        key={prod.id}
+                        name={prod.name}
+                        description={prod.description}
+                        price={prod.price}
+                        image={prod.image}
+                        stock={prod.stock}
                     />
                 );
             })}
