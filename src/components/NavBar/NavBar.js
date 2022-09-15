@@ -1,6 +1,8 @@
 import logo from '../../logo.svg';
 import './style.css';
 import CartWidget from '../CartWidget/CartWidget';
+import {Link} from 'react-router-dom';
+import { NavLink } from 'react-bootstrap';
 
 const NavBar =() =>{
     return (
@@ -14,13 +16,19 @@ const NavBar =() =>{
             <div>
                 <ul>
                     <li>
-                        <a href='#'>Home</a>
+                        <NavLink as={Link} to='/'>Home</NavLink>
                     </li>
                     <li>
-                        <a href='#'>Contact</a>
+                        <NavLink as={Link} to='/productos/pesas'>Pesas</NavLink>
                     </li>
                     <li>
-                        <a href='#'>About</a>
+                        <NavLink as={Link} to='/productos/ropa'>Ropa</NavLink>
+                    </li>
+                    <li>
+                        <NavLink as={Link} to='/productos/accesorios'>Accesorios</NavLink>
+                    </li>
+                    <li>
+                        <NavLink as={Link} to='/event-listener'>EventListener</NavLink>
                     </li>
                 </ul>
             </div>

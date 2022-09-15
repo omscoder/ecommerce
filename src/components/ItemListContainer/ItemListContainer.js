@@ -2,9 +2,14 @@
 import data from "./Mock-data";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
+import {useParams} from 'react-router-dom';
 
 function ItemListContainer ({greating}) {
+    const {categoryId} = useParams();
+    console.log('categoryId', categoryId);
+   
     const [item, setItem] = useState ([]);
+    
     const getData = new Promise((resolve, reject) => {
         setTimeout(()=>{
             resolve(data);
@@ -13,9 +18,14 @@ function ItemListContainer ({greating}) {
     
     useEffect(() =>{
         getData.then((result) => {
-            setItem(result);
+            if(categoryId){
+                const newProducts = result.filter(item=>item.categoria===categoryId);
+                setItem(newProducts);
+            }else{
+                setItem(result);
+            };
         });
-    }, []);
+    }, [categoryId]);
     
     return (
         <div>

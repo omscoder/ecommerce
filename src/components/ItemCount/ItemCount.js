@@ -16,7 +16,7 @@ function ItemCount ({stock, initial, onAdd}){
         };
     };
     
-    const onAdd = (cantidad) =>{
+    /*const onAdd = (cantidad) =>{
         console.log(cantidad);
         return(
             <div>
@@ -25,7 +25,7 @@ function ItemCount ({stock, initial, onAdd}){
             </div>
         );
     };
-
+    */
     return (
         <div>
             <button className='BotonSuma' onClick={suma}>Suma</button>

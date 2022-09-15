@@ -6,6 +6,7 @@ const data = [
         price: '$100',
         image: 'https://picsum.photos/200/300',
         stock: 1,
+        categoria: 'pesas',
     },
     {
         id: 2,
@@ -14,6 +15,7 @@ const data = [
         price: '$200',
         image: 'https://picsum.photos/200/300',
         stock: 2,
+        categoria: 'ropa',
     },
     {
         id: 3,
@@ -22,6 +24,7 @@ const data = [
         price: '$300',
         image: 'https://picsum.photos/200/300',
         stock: 3,
+        categoria: 'accesorios',
     },
 ];
 
