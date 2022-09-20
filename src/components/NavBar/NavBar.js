@@ -27,9 +27,7 @@ const NavBar =() =>{
                     <li>
                         <NavLink as={Link} to='/productos/accesorios'>Accesorios</NavLink>
                     </li>
-                    <li>
-                        <NavLink as={Link} to='/event-listener'>EventListener</NavLink>
-                    </li>
+                    
                 </ul>
             </div>
             <CartWidget/>

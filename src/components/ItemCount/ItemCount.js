@@ -16,21 +16,13 @@ function ItemCount ({stock, initial, onAdd}){
         };
     };
     
-    /*const onAdd = (cantidad) =>{
-        console.log(cantidad);
-        return(
-            <div>
-                <h2>Su conteo esta en {cantidad}</h2>
-                {contador>0 ? onAdd({contador}): console.log("no hay stock")};
-            </div>
-        );
-    };
-    */
     return (
         <div>
-            <button className='BotonSuma' onClick={suma}>Suma</button>
-            <button className='BotonResta'onClick={resta}>Resta</button>
-            <button className='AgregarACarrito'onClick={onAdd}>Agregar</button>
+            <p>Stock disponible: {stock}</p>
+            <p>{contador}</p>
+            <button disabled={stock===0} className='BotonSuma' onClick={suma}>Suma</button>
+            <button disabled={stock===0} className='BotonResta'onClick={resta}>Resta</button>
+            <button disabled={stock===0} className='AgregarACarrito'onClick={()=>{onAdd(contador)}}>Agregar</button>
         </div>
     );
 };
