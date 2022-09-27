@@ -43,13 +43,18 @@ function CartProvider({children}){
     };
 
     const getPrecioTotal = () =>{
-        const precioTotal = listaDeCompras.reduce((acumulado, item)=>acumulado+item.quantityPrice,0);
-        console.log(precioTotal)
-        
+        const precioTotal = listaDeCompras.reduce((acumulado, prod) => acumulado + prod.quantityPrice,0);
+        console.log(precioTotal);
+        return precioTotal;
+    };
+
+    const getProductosTotales = () => {
+        const productosTotales = listaDeCompras.reduce((acumulado, prod) => acumulado + prod.quantity,0);
+        return productosTotales;
     };
 
     return(
-        <CartContext.Provider value={{listaDeCompras, addItem, removeItem, clear, isInCart}}>
+        <CartContext.Provider value={{listaDeCompras, addItem, removeItem, clear, getPrecioTotal, getProductosTotales}}>
             {children}
         </CartContext.Provider>
     );
