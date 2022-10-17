@@ -1,9 +1,12 @@
 import React, { Children, useState } from "react";
+import {createContext, useContext} from "react";
 
-export const CartContext = React.createContext();
+const CartContext = createContext([]);
+
+export const useCartContext = () => useContext(CartContext);
 
 function CartProvider({children}){
-    const [listaDeCompras, setListadoDeCompras] = useState([]);
+    const [listaDeCompras, setListaDeCompras] = useState([]);
 
      const isInCart = (productId) =>{
         const productExist = listaDeCompras.some(item=>item.id === productId);
@@ -11,7 +14,6 @@ function CartProvider({children}){
     };
 
     const addItem = (prod, quantity) =>{
-        console.log('prod', prod, 'quantity', quantity) 
         const newProduct = {
             id: prod.id,
             name: prod.name,
@@ -24,27 +26,26 @@ function CartProvider({children}){
             const newArreglo = [...listaDeCompras];
             newArreglo[productPos].quantity = newArreglo[productPos].quantity + quantity;
             newArreglo[productPos].quantityPrice = newArreglo[productPos].quantity * newArreglo[productPos].price;
-            setListadoDeCompras(newArreglo);
+            setListaDeCompras(newArreglo);
         }else{
             const newArreglo = [...listaDeCompras];
             newProduct.quantityPrice = newProduct.quantity * newProduct.price;
             newArreglo.push(newProduct);
-            setListadoDeCompras(newArreglo);
+            setListaDeCompras(newArreglo);
         };
     };
 
     const removeItem = (itemId) =>{
         const newArreglo = listaDeCompras.filter(producto=>producto.id !== itemId);
-        setListadoDeCompras(newArreglo);
+        setListaDeCompras(newArreglo);
     };
 
     const clear = () =>{
-        setListadoDeCompras([]);
+        setListaDeCompras([]);
     };
 
     const getPrecioTotal = () =>{
         const precioTotal = listaDeCompras.reduce((acumulado, prod) => acumulado + prod.quantityPrice,0);
-        console.log(precioTotal);
         return precioTotal;
     };
 
@@ -54,9 +55,11 @@ function CartProvider({children}){
     };
 
     return(
-        <CartContext.Provider value={{listaDeCompras, addItem, removeItem, clear, getPrecioTotal, getProductosTotales}}>
-            {children}
-        </CartContext.Provider>
+        <>
+            <CartContext.Provider value={{listaDeCompras, addItem, removeItem, clear, getPrecioTotal, getProductosTotales}}>
+                {children}
+            </CartContext.Provider>
+        </>
     );
 };
 

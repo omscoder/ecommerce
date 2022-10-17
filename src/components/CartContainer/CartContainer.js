@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { CartContext } from "../Context/CartContext";
-import {useContext} from 'react';
+import { useCartContext } from "../Context/CartContext";
 import {Link} from 'react-router-dom';
 import {db} from '../../utils/firebase';
 import {collection, addDoc, doc, updateDoc} from 'firebase/firestore';
+import './CartContainer.css';
 
 function CartContainer() {
-    const {listaDeCompras, removeItem, clear, getPrecioTotal}= useContext(CartContext);
+    const {listaDeCompras, removeItem, clear, getPrecioTotal} = useCartContext();
     const [idOrden, setIdOrden] = useState('');
     
     
@@ -21,10 +21,8 @@ function CartContainer() {
             items:listaDeCompras,
             total: getPrecioTotal()
         };
-        console.log('orden enviada', orden)
         const querryRef = collection(db,'ordenes');
         addDoc(querryRef, orden).then(response=>{
-            console.log('response', response)
             setIdOrden(response.id);
         });
     };
@@ -42,25 +40,21 @@ function CartContainer() {
             {
             listaDeCompras.length > 0 ?
             <div>
-                <h1>CartContainer</h1>
+                <h1>Estado de Compra</h1>
                 {listaDeCompras.map(item=>(
                     <div>
-                        <h3>{item.name}</h3> 
-                        <h3>Cantidad {item.quantity}</h3> 
-                        <h3>Precio Productos {item.quantityPrice}</h3>
+                        <h3>{item.name}</h3>
+                        <h3>Cantidad: {item.quantity}</h3> 
+                        <h3>Precio Productos: US${item.quantityPrice}</h3>
                         <button onClick={()=>removeItem(item.id)}>Eliminar producto</button>
                     </div>
                 ))}
-                <h3>Precio Total: {getPrecioTotal()}</h3>
-                <button onClick={()=>clear()}>Despejar</button>
+                <h2>Precio Total: US${getPrecioTotal()}</h2>
+                <button onClick={()=>clear()}>Resetear Compra</button>
                 <form onSubmit={enviarOrden}>
-                    <label>Nombre:</label>
-                    <input type='text'></input>
-                    <label>Telefono:</label>
-                    <input type='text'></input>
-                    <label>Mail:</label>
-                    <input type='email'></input>
-                    <button type='submit'>Enviar orden</button>
+                    <Link to='/User'>
+                        <button type='submit'>Enviar orden</button>
+                    </Link>
                 </form>
             </div>
             :

@@ -1,16 +1,15 @@
 import { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
-import { CartContext } from "../Context/CartContext";
-import {useContext} from "react";
+import { useCartContext } from "../Context/CartContext";
+import './ItemDetail.css';
 
 function ItemDetail ({prod}){
 
-    const {addItem} = useContext(CartContext);
+    const {addItem} = useCartContext();
 
     const [contador, setContador] = useState(0);
 
     const onAdd =(algo) =>{
-        console.log('hizo click', algo)
         setContador(algo);
         addItem(prod, algo)
     };
@@ -18,9 +17,10 @@ function ItemDetail ({prod}){
     return(
         <div>
             <h2>{prod.name}</h2>
-            <h2>{prod.price}</h2>
-            <image src={prod.image} alt={prod.name}/>
-            <h6>{contador}</h6>
+            <p>{prod.description}</p>
+            <h2>US${prod.price}</h2>
+            <img src={prod.image} alt={prod.name}/>
+            <h3>Cantidad seleccionada: {contador}</h3>
             <ItemCount stock={prod.stock} initial={1} onAdd={onAdd} />
         </div>
     );

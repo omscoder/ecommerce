@@ -18,8 +18,7 @@ function ItemCount ({stock, initial, onAdd}){
     
     return (
         <div>
-            <p>Stock disponible: {stock}</p>
-            <p>{contador}</p>
+            <p>Su selección: {contador}</p>
             <button disabled={stock===0} className='BotonSuma' onClick={suma}>Suma</button>
             <button disabled={stock===0} className='BotonResta'onClick={resta}>Resta</button>
             <button disabled={stock===0} className='AgregarACarrito'onClick={()=>{onAdd(contador)}}>Agregar</button>

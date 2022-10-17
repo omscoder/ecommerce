@@ -1,15 +1,11 @@
-import logo from '../../logo.svg';
 import './style.css';
 import CartWidget from '../CartWidget/CartWidget';
 import {Link} from 'react-router-dom';
 import { NavLink } from 'react-bootstrap';
 
-const NavBar =() =>{
+function NavBar() {
     return (
         <div className='navbar-container'>
-            <div>
-                <img width={'100px'} src={logo} alt="logo"/>
-            </div>
             <div>
                 <h1>FitShop</h1>
             </div>
